@@ -1,76 +1,98 @@
 import Image from "next/image";
 
 export default function Home() {
+  // Source: Peggy's original site (GHL archive, /sales, captured 2026-05-10).
+  // Address, city, ZIP, price and role are copied from that page. No specs:
+  // the original listed none.
   const properties = [
     {
-      address: "309 California St, Arcadia",
+      address: "309 California St Unit E",
+      cityLine: "Arcadia, CA 91006",
       price: "$853,000",
-      beds: 3,
-      baths: 2,
-      sqft: "1,450",
+      role: "Represented seller",
       image: "/images/sale-309-california-st-arcadia.webp",
-      imageAlt: "Living room at 309 California St, Arcadia, sold by Peggy Lim",
     },
     {
-      address: "6673 Lessie Ln, Highland",
+      address: "6673 Lessie Ln",
+      cityLine: "Riverside, CA 92503",
       price: "$580,000",
-      beds: 4,
-      baths: 2,
-      sqft: "1,800",
+      role: "Represented buyer",
       image: "/images/sale-6673-lessie-ln.webp",
-      imageAlt: "Living room at 6673 Lessie Ln, sold by Peggy Lim",
     },
     {
-      address: "4145 Yale St, Alhambra",
+      address: "4145 Yale St",
+      cityLine: "Yorba Linda, CA 92886",
       price: "$3,420,000",
-      beds: 6,
-      baths: 5,
-      sqft: "4,200",
+      role: "Represented buyer",
       image: "/images/sale-4145-yale-st.webp",
-      imageAlt: "Front of 4145 Yale St, sold by Peggy Lim",
     },
     {
-      address: "2936 Grayburn St, El Monte",
+      address: "2936 Grayburn St",
+      cityLine: "Pomona, CA 91767",
       price: "$820,000",
-      beds: 3,
-      baths: 2,
-      sqft: "1,380",
+      role: "Represented buyer",
       image: "/images/sale-2936-grayburn-st.webp",
-      imageAlt: "Front of 2936 Grayburn St, sold by Peggy Lim",
     },
     {
-      address: "11300 Mt Gleason, Sunland",
-      price: "$1,483,000",
-      beds: 4,
-      baths: 3,
-      sqft: "2,600",
+      address: "11300 Mount Gleason Ave",
+      cityLine: "Tujunga, CA 91042",
+      price: "$1,485,000",
+      role: "Represented buyer",
       image: "/images/sale-11300-mt-gleason.webp",
-      imageAlt: "Living room at 11300 Mt Gleason, sold by Peggy Lim",
-    },
-    {
-      address: "4145 Yale St, Alhambra",
-      price: "$3,420,000",
-      beds: 5,
-      baths: 4,
-      sqft: "3,800",
-      image: "/images/sale-4145-yale-st.webp",
-      imageAlt: "Front of 4145 Yale St, sold by Peggy Lim",
     },
   ];
 
+  // Source: Peggy's original site (GHL archive, home page, captured
+  // 2026-05-10; identical in Wayback captures Dec 2024 through Apr 2026).
+  // Text is verbatim. "more" holds what the original hid behind "Read more".
   const testimonials = [
     {
-      name: "David & Lisa T.",
-      text: "Peggy made the entire process feel effortless. She was always one step ahead, and we never felt pressured. We found our dream home in Alhambra thanks to her!",
+      title: "\u201cThe Perfect Realtor for me.\u201d",
+      attribution: "Bought with Peggy in Glendale.",
+      body: [
+        "Peggy was the perfect realtor for me. As a first-time home buyer, I had a million questions, and Peggy didn't just answer them - she educated. She helped me shape my thought process - not just about what do I want, but why do I want it, and even was a voice of reason and helped step me back a bit if I was getting a bit too starry-eyed about a bigger home that she knew I didn't need/want, even before I did!",
+      ],
+      more: [
+        "She matched my pace (which I intended to be slow, but became pretty fast) and encouraged my freedom in looking at places myself, but also made time whenever I needed her/asked her to go with me. She was available to work very quickly during the offer process, but made time to give detailed explanations every step of the way, and she never rushed me and always made sure I felt comfortable before we took action.",
+        "And literally everyone from her suggested loan officers to numerous inspectors that she recommended were amazing and so you can be assured that the network that comes along with Peggy is as high quality as she is herself.",
+        "I felt safe that Peggy was always looking out for my best interest, and trust every recommendation she could give - and absolutely respect the fact that at the end of the day, Peggy makes sure she gives you all the tools and advice you need to make your own informed decisions.",
+        "Though I hope I won't have to for a while (she helped me find a home I love, after all!) I would absolutely work again with her in a heartbeat.",
+      ],
     },
     {
-      name: "Jennifer K.",
-      text: "As a first-time seller, I was nervous about every detail. Peggy walked me through everything, handled every complication, and got us above asking price. Truly five stars.",
+      title: "\u201cWe're so happy with how the process went!\u201d",
+      attribution: "Sold with Peggy in Burbank.",
+      body: [
+        "Peggy is an absolute gem and we would use her over and over again! She made our recent selling experience a breeze. We had decent expectations considering the state of the market but she blew them out of the water and we're so happy with how the process went as a whole.",
+        "She's personable and warm, yet firm when it comes to business. It's clear she puts her clients interests before her own, which is not only rare to find but really reassuring when you're doing something as big as selling or buying your home.",
+      ],
+      more: [
+        "She invested a lot into putting our home on the market in its absolute best state, advocated for our interests, and took the time to get to know us and our situation personally so that she could best meet our needs. She's knowledgeable, experienced and overall just so special.",
+        "If you're considering going with Peggy, don't hesitate!",
+      ],
     },
     {
-      name: "Michael & Sarah R.",
-      text: "We interviewed three agents before choosing Peggy. Best decision we made. She genuinely cares about her clients and it shows in every interaction.",
+      title: "\u201cWould work with her again and again!\u201d",
+      attribution: "Bought AND Sold with Peggy in Pasadena.",
+      body: [
+        "I've worked with Peggy in both the purchase and eventual sale of my home.",
+        "I can always count on her to be knowledgeable, responsive and helpful. Plus, her team of references is just as solid.",
+        "Would work with her again and again!",
+      ],
+      more: [] as string[],
     },
+  ];
+
+  // Source: social links on Peggy's original site (GHL archive footer).
+  const socials = [
+    { label: "Facebook", href: "https://www.facebook.com/PeggyLimRealEstate" },
+    { label: "Instagram", href: "https://www.instagram.com/peggylimrealtor/" },
+    { label: "Redfin", href: "https://www.redfin.com/real-estate-agents/peggy-lim" },
+    {
+      label: "Yelp",
+      href: "https://www.yelp.com/biz/peggy-lim-real-estate-exp-realty-of-california-inc-alhambra",
+    },
+    { label: "Zillow", href: "https://www.zillow.com/profile/peggy9449" },
   ];
 
   return (
@@ -78,8 +100,15 @@ export default function Home() {
       {/* ========== HEADER ========== */}
       <header className="sticky top-0 z-50 bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          <a href="#" className="font-[family-name:var(--font-montserrat)] text-xl font-bold tracking-widest text-dark-section">
-            MS. ALHAMBRA
+          <a href="#" className="flex items-center">
+            <Image
+              src="/images/ms-alhambra-logo.png"
+              alt="Ms. Alhambra Real Estate"
+              width={185}
+              height={116}
+              priority
+              className="h-14 w-auto"
+            />
           </a>
           <nav className="hidden md:flex gap-8 text-sm font-medium tracking-wide uppercase text-gray-600">
             <a href="#about" className="hover:text-gold transition-colors">
@@ -108,8 +137,16 @@ export default function Home() {
       </header>
 
       {/* ========== HERO ========== */}
-      <section className="relative bg-dark-section text-white py-28 sm:py-36">
-        <div className="absolute inset-0 bg-gradient-to-br from-black/80 to-black/40" />
+      <section className="relative overflow-hidden bg-dark-section text-white py-28 sm:py-36">
+        <Image
+          src="/images/hero-mountain-skyline.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-black/65" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <h1 className="font-[family-name:var(--font-montserrat)] text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             We help you set down roots.
@@ -300,7 +337,7 @@ export default function Home() {
                 <div className="relative bg-gray-200 h-48 overflow-hidden">
                   <Image
                     src={prop.image}
-                    alt={prop.imageAlt}
+                    alt={`${prop.address}, ${prop.cityLine}`}
                     fill
                     sizes="(min-width: 1024px) 352px, (min-width: 640px) 50vw, 100vw"
                     className="object-cover object-center"
@@ -310,13 +347,9 @@ export default function Home() {
                   <p className="text-gold font-[family-name:var(--font-montserrat)] font-bold text-xl mb-1">
                     {prop.price}
                   </p>
-                  <p className="font-medium text-gray-900 mb-2">
-                    {prop.address}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    {prop.beds} bed &middot; {prop.baths} bath &middot;{" "}
-                    {prop.sqft} sqft
-                  </p>
+                  <p className="font-medium text-gray-900">{prop.address}</p>
+                  <p className="text-gray-700 mb-2">{prop.cityLine}</p>
+                  <p className="text-sm text-gray-500">{prop.role}</p>
                 </div>
               </div>
             ))}
@@ -332,26 +365,32 @@ export default function Home() {
           </h2>
           <div className="grid md:grid-cols-3 gap-10">
             {testimonials.map((t, i) => (
-              <div key={i} className="bg-gray-section rounded-xl p-8">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, j) => (
-                    <svg
-                      key={j}
-                      className="w-5 h-5 text-gold"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
+              <figure key={i} className="bg-gray-section rounded-xl p-8">
+                <h3 className="font-[family-name:var(--font-montserrat)] text-lg font-bold mb-1">
+                  {t.title}
+                </h3>
+                <figcaption className="text-sm text-gray-500 mb-4">
+                  {t.attribution}
+                </figcaption>
+                <blockquote className="text-gray-600 leading-relaxed space-y-4">
+                  {t.body.map((para, j) => (
+                    <p key={j}>{para}</p>
                   ))}
-                </div>
-                <p className="text-gray-600 leading-relaxed mb-4 italic">
-                  &ldquo;{t.text}&rdquo;
-                </p>
-                <p className="font-[family-name:var(--font-montserrat)] font-bold text-sm">
-                  {t.name}
-                </p>
-              </div>
+                  {t.more.length > 0 && (
+                    <details className="group">
+                      <summary className="cursor-pointer font-semibold text-gold-dark hover:text-gold list-none">
+                        <span className="group-open:hidden">Read more</span>
+                        <span className="hidden group-open:inline">Read less</span>
+                      </summary>
+                      <div className="space-y-4 mt-4">
+                        {t.more.map((para, j) => (
+                          <p key={j}>{para}</p>
+                        ))}
+                      </div>
+                    </details>
+                  )}
+                </blockquote>
+              </figure>
             ))}
           </div>
         </div>
@@ -381,9 +420,13 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div>
-              <p className="font-[family-name:var(--font-montserrat)] font-bold text-lg tracking-widest mb-2">
-                MS. ALHAMBRA
-              </p>
+              <Image
+                src="/images/ms-alhambra-logo.png"
+                alt="Ms. Alhambra Real Estate"
+                width={185}
+                height={116}
+                className="h-16 w-auto mb-3"
+              />
               <p className="text-sm text-gray-500">
                 eXp Realty of California, Inc.
               </p>
@@ -403,10 +446,10 @@ export default function Home() {
               <p className="text-sm text-gray-600">
                 Office:{" "}
                 <a
-                  href="tel:8818327179"
+                  href="tel:8888327179"
                   className="hover:text-gold transition-colors"
                 >
-                  (881) 832-7179
+                  (888) 832-7179
                 </a>
               </p>
             </div>
@@ -420,6 +463,20 @@ export default function Home() {
                   peggylimhomes@gmail.com
                 </a>
               </p>
+              <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm" aria-label="Peggy Lim on social media">
+                {socials.map((social) => (
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 underline underline-offset-2 hover:text-gold transition-colors"
+                    >
+                      {social.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
           <div className="mt-10 pt-6 border-t border-gray-100 text-center text-xs text-gray-400">
