@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Home() {
   const properties = [
     {
@@ -6,6 +8,8 @@ export default function Home() {
       beds: 3,
       baths: 2,
       sqft: "1,450",
+      image: "/images/sale-309-california-st-arcadia.webp",
+      imageAlt: "Living room at 309 California St, Arcadia, sold by Peggy Lim",
     },
     {
       address: "6673 Lessie Ln, Highland",
@@ -13,6 +17,8 @@ export default function Home() {
       beds: 4,
       baths: 2,
       sqft: "1,800",
+      image: "/images/sale-6673-lessie-ln.webp",
+      imageAlt: "Living room at 6673 Lessie Ln, sold by Peggy Lim",
     },
     {
       address: "4145 Yale St, Alhambra",
@@ -20,6 +26,8 @@ export default function Home() {
       beds: 6,
       baths: 5,
       sqft: "4,200",
+      image: "/images/sale-4145-yale-st.webp",
+      imageAlt: "Front of 4145 Yale St, sold by Peggy Lim",
     },
     {
       address: "2936 Grayburn St, El Monte",
@@ -27,6 +35,8 @@ export default function Home() {
       beds: 3,
       baths: 2,
       sqft: "1,380",
+      image: "/images/sale-2936-grayburn-st.webp",
+      imageAlt: "Front of 2936 Grayburn St, sold by Peggy Lim",
     },
     {
       address: "11300 Mt Gleason, Sunland",
@@ -34,6 +44,8 @@ export default function Home() {
       beds: 4,
       baths: 3,
       sqft: "2,600",
+      image: "/images/sale-11300-mt-gleason.webp",
+      imageAlt: "Living room at 11300 Mt Gleason, sold by Peggy Lim",
     },
     {
       address: "4145 Yale St, Alhambra",
@@ -41,6 +53,8 @@ export default function Home() {
       beds: 5,
       baths: 4,
       sqft: "3,800",
+      image: "/images/sale-4145-yale-st.webp",
+      imageAlt: "Front of 4145 Yale St, sold by Peggy Lim",
     },
   ];
 
@@ -165,13 +179,14 @@ export default function Home() {
       <section id="about" className="py-20 sm:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="bg-gray-section rounded-2xl aspect-[3/4] flex items-center justify-center">
-              <div className="text-center text-gray-400">
-                <svg className="w-24 h-24 mx-auto mb-4 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0" />
-                </svg>
-                <p className="text-sm">Photo of Peggy</p>
-              </div>
+            <div className="relative bg-gray-section rounded-2xl aspect-[3/4] overflow-hidden">
+              <Image
+                src="/images/peggy-lim-headshot.jpg"
+                alt="Peggy Lim, Ms. Alhambra Real Estate"
+                fill
+                sizes="(min-width: 1152px) 528px, (min-width: 768px) 45vw, 100vw"
+                className="object-cover object-top"
+              />
             </div>
             <div>
               <h2 className="font-[family-name:var(--font-montserrat)] text-3xl sm:text-4xl font-bold mb-6">
@@ -282,10 +297,14 @@ export default function Home() {
                 key={i}
                 className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="bg-gray-200 h-48 flex items-center justify-center">
-                  <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 0h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
-                  </svg>
+                <div className="relative bg-gray-200 h-48 overflow-hidden">
+                  <Image
+                    src={prop.image}
+                    alt={prop.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 352px, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover object-center"
+                  />
                 </div>
                 <div className="p-5">
                   <p className="text-gold font-[family-name:var(--font-montserrat)] font-bold text-xl mb-1">
