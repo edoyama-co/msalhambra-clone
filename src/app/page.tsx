@@ -371,14 +371,14 @@ export default function Home() {
             </div>
             <div>
               <p className="font-bold mb-2">PEGGY LIM</p>
-              <p className="text-sm text-gray-600">CA DRE #02040295</p>
+              <p className="text-sm text-gray-600">CA DRE #02040293</p>
               <p className="text-sm text-gray-600 mt-1">
                 Cell:{" "}
                 <a
-                  href="tel:6262952569"
+                  href="tel:6262902869"
                   className="hover:text-gold transition-colors"
                 >
-                  (626) 295-2569
+                  (626) 290-2869
                 </a>
               </p>
               <p className="text-sm text-gray-600">
