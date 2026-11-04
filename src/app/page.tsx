@@ -1,4 +1,12 @@
 import Image from "next/image";
+import MobileMenu from "./MobileMenu";
+
+const navLinks = [
+  { href: "#about", label: "About Us" },
+  { href: "#sales", label: "Sales" },
+  { href: "#process", label: "Our Process" },
+  { href: "#valuation", label: "Free Home Valuation" },
+];
 
 export default function Home() {
   // Source: Peggy's original site (GHL archive, /sales, captured 2026-05-10).
@@ -83,11 +91,18 @@ export default function Home() {
     },
   ];
 
+  // Property photos from the original testimonial cards, in the original
+  // left-to-right order (GHL archive): Glendale, Burbank, Pasadena.
+  const testimonialPhotos = [
+    { src: "/images/testimonial-glendale.jpg", width: 500, height: 375, alt: "Living room of the Glendale home" },
+    { src: "/images/testimonial-burbank.jpg", width: 500, height: 281, alt: "Living room of the Burbank home" },
+    { src: "/images/testimonial-pasadena.jpg", width: 500, height: 333, alt: "Front of the Pasadena home at sunset" },
+  ];
+
   // Source: social links on Peggy's original site (GHL archive footer).
   const socials = [
     { label: "Facebook", href: "https://www.facebook.com/PeggyLimRealEstate" },
     { label: "Instagram", href: "https://www.instagram.com/peggylimrealtor/" },
-    { label: "Redfin", href: "https://www.redfin.com/real-estate-agents/peggy-lim" },
     {
       label: "Yelp",
       href: "https://www.yelp.com/biz/peggy-lim-real-estate-exp-realty-of-california-inc-alhambra",
@@ -98,8 +113,9 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-full">
       {/* ========== HEADER ========== */}
+      {/* Logo at the original GHL size: 185x116 on desktop, 108x68 on mobile. */}
       <header className="sticky top-0 z-50 bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[84px] md:h-[146px]">
           <a href="#" className="flex items-center">
             <Image
               src="/images/ms-alhambra-logo.png"
@@ -107,51 +123,36 @@ export default function Home() {
               width={185}
               height={116}
               priority
-              className="h-14 w-auto"
+              className="h-[68px] md:h-[116px] w-auto"
             />
           </a>
           <nav className="hidden md:flex gap-8 text-sm font-medium tracking-wide uppercase text-gray-600">
-            <a href="#about" className="hover:text-gold transition-colors">
-              About Us
-            </a>
-            <a href="#sales" className="hover:text-gold transition-colors">
-              Sales
-            </a>
-            <a href="#process" className="hover:text-gold transition-colors">
-              Our Process
-            </a>
-            <a
-              href="#valuation"
-              className="hover:text-gold transition-colors"
-            >
-              Free Home Valuation
-            </a>
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="hover:text-gold transition-colors">
+                {link.label}
+              </a>
+            ))}
           </nav>
-          {/* Mobile menu button */}
-          <button className="md:hidden p-2 text-gray-600" aria-label="Menu">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+          <MobileMenu links={navLinks} />
         </div>
       </header>
 
       {/* ========== HERO ========== */}
       <section className="relative overflow-hidden bg-dark-section text-white py-28 sm:py-36">
         <Image
-          src="/images/hero-mountain-skyline.webp"
+          src="/images/hero-living-room.jpg"
           alt=""
           fill
           priority
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-black/65" />
+        <div className="absolute inset-0 bg-black/55" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <h1 className="font-[family-name:var(--font-montserrat)] text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             We help you set down roots.
           </h1>
-          <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg sm:text-xl text-white max-w-2xl mx-auto mb-10 leading-relaxed">
             Whether you&apos;re buying or selling, I&apos;m here to help you
             find your way home.
           </p>
@@ -159,55 +160,36 @@ export default function Home() {
             href="#valuation"
             className="inline-block bg-gold hover:bg-gold-dark text-white font-bold py-4 px-10 rounded-md text-lg tracking-wide transition-colors shadow-lg"
           >
-            Get a FREE CONSULTATION!
+            <span className="block">Get a FREE CONSULTATION!</span>
+            <span className="block text-sm font-normal tracking-normal text-gray-800">
+              No obligation!
+            </span>
           </a>
         </div>
       </section>
 
       {/* ========== IS THIS YOU? ========== */}
+      {/* Copy below is verbatim from Peggy's original site (GHL archive,
+          2026-05-10; matches Wayback 2026-04-19). Do not rewrite. */}
       <section className="bg-gray-section py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="font-[family-name:var(--font-montserrat)] text-3xl sm:text-4xl font-bold text-center mb-16">
-            Is This You?
+        <div className="max-w-2xl mx-auto px-6">
+          <h2 className="font-[family-name:var(--font-montserrat)] text-3xl sm:text-4xl font-bold text-center mb-4">
+            Is this you?
           </h2>
-          <div className="grid md:grid-cols-3 gap-10">
-            {[
-              {
-                icon: (
-                  <svg className="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                  </svg>
-                ),
-                title: "Worried your agent isn't looking out for you?",
-                text: "You feel like just another transaction. Your agent is hard to reach, slow to respond, and doesn't seem to understand what matters to you.",
-              },
-              {
-                icon: (
-                  <svg className="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                  </svg>
-                ),
-                title: "Feeling pushed into something you're not sure about?",
-                text: "High-pressure tactics, confusing timelines, and aggressive upsells. You just want honest guidance from someone who puts your needs first.",
-              },
-              {
-                icon: (
-                  <svg className="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-                  </svg>
-                ),
-                title: "Scared of legal trouble or costly mistakes?",
-                text: "Real estate contracts are complex. One missed detail can cost you thousands. You deserve an expert who catches problems before they happen.",
-              },
-            ].map((item, i) => (
-              <div key={i} className="bg-white rounded-xl p-8 shadow-sm text-center">
-                <div className="flex justify-center mb-5">{item.icon}</div>
-                <h3 className="font-[family-name:var(--font-montserrat)] text-lg font-bold mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">{item.text}</p>
-              </div>
-            ))}
+          <div className="w-16 h-0.5 bg-gold mx-auto mb-10" />
+          <div className="space-y-8 text-lg sm:text-xl text-gray-800 leading-relaxed">
+            <p>
+              Are you worried that your agent will just try to get the sale
+              first and put your needs second?
+            </p>
+            <p>
+              Or that you&apos;ll be pushed into doing and signing things
+              without knowing what you&apos;re doing?
+            </p>
+            <p>
+              Or even worse - that you&apos;ll end up in legal trouble if you
+              don&apos;t list your home the right way?
+            </p>
           </div>
         </div>
       </section>
@@ -215,40 +197,92 @@ export default function Home() {
       {/* ========== I'M HERE TO HELP (Bio) ========== */}
       <section id="about" className="py-20 sm:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative bg-gray-section rounded-2xl aspect-[3/4] overflow-hidden">
+          <h2 className="font-[family-name:var(--font-montserrat)] text-3xl sm:text-4xl font-bold text-center mb-12">
+            I&apos;m here to help!
+          </h2>
+          <div className="grid md:grid-cols-[3fr_2fr] gap-10 md:gap-16 items-start">
+            <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+              <p>
+                <strong className="text-gray-900">
+                  I&apos;m Ms. Alhambra - Peggy Lim, your personal real estate
+                  specialist!
+                </strong>
+                <br />
+                I take the time to get to know my clients the way I know and
+                love my neighborhood, and I&apos;m known for the way I put
+                people first in every transaction.
+              </p>
+              <p>
+                I was born and raised in Los Angeles, I&apos;m a daughter of
+                immigrants, and a proud mother of two.{" "}
+                <strong className="text-gray-900">
+                  As a second-generation realtor
+                </strong>{" "}
+                following in the footsteps of my late father, I bring a unique
+                blend of passion and commitment to helping people achieve their
+                real estate goals.
+              </p>
+              <p>
+                Watching my parents work tirelessly and give back to our
+                community, church, and anyone in need, instilled in me a deep
+                sense of service and dedication.
+              </p>
+            </div>
+            <div className="relative bg-gray-section aspect-[5/7] overflow-hidden">
               <Image
                 src="/images/peggy-lim-headshot.jpg"
                 alt="Peggy Lim, Ms. Alhambra Real Estate"
                 fill
-                sizes="(min-width: 1152px) 528px, (min-width: 768px) 45vw, 100vw"
+                sizes="(min-width: 1152px) 400px, (min-width: 768px) 38vw, 100vw"
                 className="object-cover object-top"
               />
             </div>
-            <div>
-              <h2 className="font-[family-name:var(--font-montserrat)] text-3xl sm:text-4xl font-bold mb-6">
-                I&apos;m Here to Help
-              </h2>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Hi, I&apos;m Peggy Lim. I&apos;m a daughter of immigrants, a
-                second-generation realtor, and I grew up watching my parents
-                build something from nothing in the San Gabriel Valley.
+          </div>
+          <div className="mt-16 grid md:grid-cols-[2fr_3fr] gap-10 md:gap-12 items-start">
+            <div className="space-y-5">
+              <Image
+                src="/images/bio-closing-keys.jpg"
+                alt="Peggy Lim with a client holding the keys to her new home"
+                width={700}
+                height={525}
+                sizes="(min-width: 1152px) 420px, (min-width: 768px) 38vw, 100vw"
+                className="w-full h-auto"
+              />
+              <Image
+                src="/images/bio-closing-day-sign.jpg"
+                alt="Peggy Lim with a client holding a closing day sign"
+                width={960}
+                height={640}
+                sizes="(min-width: 1152px) 420px, (min-width: 768px) 38vw, 100vw"
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+              <p>
+                <strong className="text-gray-900">
+                  With a background in banking, business development, and
+                  customer service,
+                </strong>{" "}
+                I have honed my skills to become a client-centric realtor. I am
+                committed to providing not only an exceptional real estate
+                experience, but also fostering meaningful relationships that
+                transcend transactions and develop into lifelong friendships.
               </p>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Before real estate, I spent years in banking, where I learned
-                the financial side of homeownership inside and out. That
-                experience gives my clients an edge most agents can&apos;t
-                offer.
+              <p>
+                <strong className="text-gray-900">
+                  Fluent in Korean, I am well-equipped to serve a diverse
+                  clientele.
+                </strong>{" "}
+                My father&apos;s legacy of generosity and service continues to
+                inspire me as I strive to make a positive impact in the lives
+                of my clients and community.
               </p>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                I&apos;m fluent in Korean and deeply rooted in this community.
-                As a mother of two, I understand what it means to find the
-                right home for your family.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                My mission is simple: treat every client like family. No
-                pressure, no games. Just honest, expert guidance from start to
-                close.
+              <p>
+                <strong className="text-gray-900">
+                  Whether you&apos;re buying your first home or selling your
+                  current property, I&apos;m here to help you every step of the
+                  way!
+                </strong>
               </p>
             </div>
           </div>
@@ -259,24 +293,24 @@ export default function Home() {
       <section id="process" className="bg-gray-section py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="font-[family-name:var(--font-montserrat)] text-3xl sm:text-4xl font-bold text-center mb-16">
-            What&apos;s It Like Working with Peggy?
+            What&apos;s it like working with Peggy?
           </h2>
           <div className="grid md:grid-cols-3 gap-10">
             {[
               {
                 step: "01",
-                title: "Free Consultation",
-                text: "We start with a no-pressure conversation to understand your goals, timeline, and what matters most to you. No obligations, just clarity.",
+                title: "FREE CONSULTATION",
+                text: "We always start with a free consultation where I take the time to really get to know you and what you're looking for!",
               },
               {
                 step: "02",
-                title: "I Handle the Work",
-                text: "From market research and negotiations to inspections and paperwork, I manage every detail so you don't have to. You stay informed, never overwhelmed.",
+                title: "I HANDLE THE WORK",
+                text: "Whether you're buying or selling, I go to work for you - navigating the market on your behalf and always in close communication with you!",
               },
               {
                 step: "03",
-                title: "Five Star Closing",
-                text: "We cross the finish line together with confidence. A smooth, stress-free closing experience is my standard, not the exception.",
+                title: "FIVE STAR CLOSING",
+                text: "I handle every last detail of the transaction with the utmost care so that you get a seamless and stress-free experience!",
               },
             ].map((item, i) => (
               <div
@@ -298,36 +332,44 @@ export default function Home() {
 
       {/* ========== THE MS. ALHAMBRA DIFFERENCE ========== */}
       <section className="py-20 sm:py-24 bg-white">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="font-[family-name:var(--font-montserrat)] text-3xl sm:text-4xl font-bold mb-8">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="font-[family-name:var(--font-montserrat)] text-3xl sm:text-4xl font-bold text-center mb-8">
             The Ms. Alhambra Difference
           </h2>
-          <p className="text-gray-600 text-lg leading-relaxed mb-6">
-            In a market full of agents chasing commissions, I chose a different
-            path. I&apos;m not here to sell you a house. I&apos;m here to help
-            you find the right one, and to protect your interests every step of
-            the way.
+          <p className="text-gray-700 text-lg leading-relaxed mb-6">
+            <strong className="text-gray-900">
+              Many of my clients come to me overwhelmed and nervous.
+            </strong>{" "}
+            They&apos;re not sure whether or not they can get what they&apos;re
+            looking for - and they&apos;re so busy in their home and
+            professional responsibilities that they can&apos;t study up on the
+            details themselves!
           </p>
-          <p className="text-gray-600 text-lg leading-relaxed mb-8">
-            When you work with me, you get a trusted advisor with deep local
-            knowledge, a sharp financial mind, and the patience to do this
-            right. That&apos;s the Ms. Alhambra difference.
+          <p className="text-gray-700 text-lg leading-relaxed">
+            <strong className="text-gray-900">
+              That&apos;s where I come in. I love being the trusted advisor in
+              your corner,
+            </strong>{" "}
+            who listens to your hopes and dreams, gives you clarity on what you
+            need to know, and works on your behalf to help you build a future
+            for yourself and your family!
           </p>
-          <a
-            href="#valuation"
-            className="inline-block bg-gold hover:bg-gold-dark text-white font-bold py-3 px-8 rounded-md tracking-wide transition-colors"
-          >
-            Work With Peggy
-          </a>
         </div>
       </section>
 
       {/* ========== RECENT SALES ========== */}
       <section id="sales" className="bg-gray-section py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="font-[family-name:var(--font-montserrat)] text-3xl sm:text-4xl font-bold text-center mb-16">
-            Recent Sales
+          {/* Header lines verbatim from the original /sales page. */}
+          <h2 className="font-[family-name:var(--font-montserrat)] text-3xl sm:text-4xl font-bold text-center mb-4">
+            Our Recent Sales
           </h2>
+          <p className="font-[family-name:var(--font-montserrat)] text-lg sm:text-xl text-gray-700 text-center">
+            Discover the Latest Properties We’ve Successfully Closed.
+          </p>
+          <p className="font-[family-name:var(--font-montserrat)] text-lg sm:text-xl font-semibold text-gray-900 text-center mb-16">
+            Your Dream Home Could Be Next!
+          </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {properties.map((prop, i) => (
               <div
@@ -365,7 +407,16 @@ export default function Home() {
           </h2>
           <div className="grid md:grid-cols-3 gap-10">
             {testimonials.map((t, i) => (
-              <figure key={i} className="bg-gray-section rounded-xl p-8">
+              <figure key={i} className="bg-gray-section rounded-xl overflow-hidden">
+                <Image
+                  src={testimonialPhotos[i].src}
+                  alt={testimonialPhotos[i].alt}
+                  width={testimonialPhotos[i].width}
+                  height={testimonialPhotos[i].height}
+                  sizes="(min-width: 1152px) 352px, (min-width: 768px) 30vw, 100vw"
+                  className="w-full h-auto"
+                />
+                <div className="p-8">
                 <h3 className="font-[family-name:var(--font-montserrat)] text-lg font-bold mb-1">
                   {t.title}
                 </h3>
@@ -390,6 +441,7 @@ export default function Home() {
                     </details>
                   )}
                 </blockquote>
+                </div>
               </figure>
             ))}
           </div>
@@ -397,21 +449,40 @@ export default function Home() {
       </section>
 
       {/* ========== FREE RESOURCE CTA ========== */}
+      {/* Copy verbatim from the original. The original button went to the old
+          eXp valuation tool; it now opens an email to Peggy instead. */}
       <section id="valuation" className="bg-dark-section text-white py-20 sm:py-24">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="font-[family-name:var(--font-montserrat)] text-3xl sm:text-4xl font-bold mb-6">
-            Find out your home&apos;s true value!
-          </h2>
-          <p className="text-gray-300 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-            Curious what your property is worth in today&apos;s market? Get a
-            free, no-obligation home valuation from a trusted local expert.
-          </p>
-          <a
-            href="mailto:peggylimhomes@gmail.com?subject=Free Home Valuation Request"
-            className="inline-block bg-gold hover:bg-gold-dark text-white font-bold py-4 px-10 rounded-md text-lg tracking-wide transition-colors shadow-lg"
-          >
-            Get Your FREE Home Valuation
-          </a>
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <div className="relative aspect-[2/3] max-h-[560px] w-full max-w-sm mx-auto overflow-hidden">
+            <Image
+              src="/images/valuation-kitchen.jpg"
+              alt="Bright modern kitchen"
+              fill
+              sizes="(min-width: 768px) 384px, 90vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="text-center">
+            <h2 className="font-[family-name:var(--font-montserrat)] text-3xl sm:text-4xl font-bold mb-2">
+              FREE RESOURCE:
+            </h2>
+            <p className="font-[family-name:var(--font-montserrat)] text-3xl sm:text-4xl font-bold mb-6">
+              Find out your home&apos;s true value!
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+              Just enter your address, your name, and your email to get
+              started! <em>No obligation!</em>
+            </p>
+            <a
+              href="mailto:peggylimhomes@gmail.com?subject=Free Home Valuation Request"
+              className="inline-block bg-gold hover:bg-gold-dark text-white font-bold py-4 px-10 rounded-md text-lg tracking-wide transition-colors shadow-lg"
+            >
+              <span className="block">Yes - I want my free housing report!</span>
+              <span className="block text-sm font-normal tracking-normal text-gray-800">
+                No obligation!
+              </span>
+            </a>
+          </div>
         </div>
       </section>
 
